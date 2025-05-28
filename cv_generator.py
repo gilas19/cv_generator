@@ -210,21 +210,17 @@ Return only the complete LaTeX document ready for compilation.
             logger.error("Failed to convert CV to LaTeX: %s", str(e))
             raise Exception(f"Failed to convert CV to LaTeX: {str(e)}")
 
-    def compile_latex_to_pdf(self, latex_content: str, output_name: str = "CustomizedCV") -> str:
+    def compile_latex_to_pdf(self, latex_path: str, output_name: str = "CustomizedCV") -> str:
         logger.info("Compiling LaTeX to PDF: %s", output_name)
         try:
             # Create temporary directory for LaTeX compilation
             with tempfile.TemporaryDirectory() as temp_dir:
                 temp_path = Path(temp_dir)
 
-                # Write LaTeX content to file
-                tex_file = temp_path / f"{output_name}.tex"
-                tex_file.write_text(latex_content, encoding="utf-8")
-
                 # Compile LaTeX to PDF (run twice for proper cross-references)
                 for _ in range(2):
                     result = subprocess.run(
-                        ["pdflatex", "-interaction=nonstopmode", tex_file.name], cwd=temp_dir, capture_output=True, text=True
+                        ["pdflatex", "-interaction=nonstopmode", latex_path], cwd=temp_dir, capture_output=True, text=True
                     )
                     if result.returncode != 0:
                         logger.warning("LaTeX compilation warning/error output:\n%s\n%s", result.stdout, result.stderr)
@@ -280,14 +276,13 @@ Return only the complete LaTeX document ready for compilation.
         logger.info("PDF generated successfully: %s", pdf_path)
 
         return {
-            "latex_file": str(latex_path),
             "pdf_file": pdf_path,
         }
 
 
 def main():
     parser = argparse.ArgumentParser(description="Generate customized CV from job description URL")
-    parser.add_argument("job_url", required=True, help="URL of the job description")
+    parser.add_argument("job_url", help="URL of the job description")
     parser.add_argument("--output", "-o", default="CustomizedCV", help="Output filename (without extension)")
     parser.add_argument("--api-key", help="OpenAI API key (or set OPENAI_API_KEY environment variable)")
     parser.add_argument("--model", default="gpt-4o-mini", help="OpenAI model to use (default: gpt-4o-mini)")
