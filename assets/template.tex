@@ -1,0 +1,155 @@
+```latex
+\documentclass[a4paper,11pt]{article}
+
+%-----------------------------------------------------------
+% Packages
+%-----------------------------------------------------------
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{hyperref}
+\raggedright
+
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+\input{glyphtounicode}
+\pdfgentounicode=1 
+
+%-----------------------------------------------------------
+% Custom Colors
+%-----------------------------------------------------------
+\definecolor{mainblue}{HTML}{0E5484}
+\definecolor{maingray}{HTML}{606060}
+\definecolor{sectiongray}{HTML}{ECEAE2}
+
+%-----------------------------------------------------------
+% Page Layout
+%-----------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.3in}
+\addtolength{\evensidemargin}{-0.3in}
+\addtolength{\textwidth}{0.6in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+%-----------------------------------------------------------
+% Section Formatting
+%-----------------------------------------------------------
+\titlespacing{\section}{0pt}{6pt}{6pt}
+\setitemize{leftmargin=15pt}
+\setlist{itemsep=0.5em} % nosep
+
+\titleformat{\section}
+  {\Large}
+  {}
+  {0em}
+  {\colorsection}
+  []
+
+\newcommand{\colorsection}[1]{%
+  \colorbox{sectiongray}{\parbox{\dimexpr\columnwidth-2\fboxsep-2\fboxrule\relax}{\strut #1\strut}}}
+
+%-----------------------------------------------------------
+% Custom Commands
+%-----------------------------------------------------------
+\newcommand{\contactInfo}[1]{\textcolor{mainblue}{\small#1}}
+\newcommand{\runsubsection}[1]{\textcolor{mainblue}{\bfseries #1}\normalfont}
+\newcommand{\location}[1]{\textcolor{maingray}{\small #1}}
+\newcommand{\githublink}[2]{\faGithub\ \href{https://github.com/#1}{#2}}
+\newcommand{\hiddentext}[1]{\textcolor{white}{\tiny #1}}
+
+%-----------------------------------------------------------
+% PDF Meta Information - CUSTOMIZE THIS SECTION
+%-----------------------------------------------------------
+\hypersetup{
+    hidelinks,
+    pdfauthor={Your Name},
+    pdftitle={Your Name - CV},
+    pdfsubject={Resume/CV},
+    pdfkeywords={
+        % Add relevant keywords here
+    },
+    pdfproducer={LaTeX},
+    pdfcreator={pdfLaTeX}
+}
+
+%-----------------------------------------------------------
+% Document
+%-----------------------------------------------------------
+\begin{document}
+
+% HEADER - CUSTOMIZE THIS SECTION
+\begin{center}
+    {\Huge \scshape Your Full Name} \\[5pt]
+    \contactInfo{
+        \faEnvelope\ \href{mailto:your.email@example.com}{your.email@example.com} \quad | \quad 
+        \faPhone\ +1-(XXX)-XXX-XXXX \\[5pt]
+        \faLinkedin\ \href{https://linkedin.com/in/your-profile}{linkedin.com/in/your-profile} \quad | \quad
+        \faGithub\ \href{https://github.com/yourusername}{github.com/yourusername}
+    }
+\end{center}
+
+% PROFILE - CUSTOMIZE THIS SECTION
+\section{Profile}
+Write a brief 2 sentence summary highlighting your background, key skills, and career objectives. Focus on what makes you unique and what you're seeking in your next role.
+
+% EDUCATION - CUSTOMIZE THIS SECTION
+\section{Education}
+\runsubsection{University Name} \hfill \location{City, Country}\\[2pt]
+Degree Name (e.g., M.Sc. in Computer Science) \hfill \location{MM/YYYY -- MM/YYYY}
+\begin{itemize}
+    \item Add any relevant details, honors, or achievements
+\end{itemize}
+
+\runsubsection{University Name} \hfill \location{City, Country}\\[2pt]
+Degree Name, \textit{GPA: X.X} \hfill \location{MM/YYYY -- MM/YYYY}
+\begin{itemize}
+    \item Excellence in courses: Course Name (Grade), Course Name (Grade), Course Name (Grade)
+    \item Add any other relevant academic achievements
+\end{itemize}
+
+% TECHNICAL SKILLS - CUSTOMIZE THIS SECTION
+\section{Technical Skills}
+\begin{itemize}
+    \item List your main technical skills here, grouped by categories
+    \item \textbf{Categoty 1:} Skill 1, Skill 2, ...
+\end{itemize}
+
+% TECHNICAL PROJECTS - CUSTOMIZE THIS SECTION
+\section*{Technical Projects}
+\runsubsection{Project Name} \hfill \location{Technology/Category}
+\begin{itemize}
+    \item Brief single-line description of the project
+    \item \githublink{yourusername/repository-name}{Repository Name}
+\end{itemize}
+
+% PROFESSIONAL EXPERIENCE - CUSTOMIZE THIS SECTION
+\section*{Professional Experience}
+\runsubsection{Job Title} \hfill \location{City, Country}\\[2pt]
+Company Name \hfill \location{MM/YYYY -- MM/YYYY or Present}
+\begin{itemize}
+    \item Describe your key responsibilities and achievements
+    \item Use action verbs and quantify results where possible, Focus on impact and value delivered
+\end{itemize}
+
+% ACTIVITIES & ACHIEVEMENTS - CUSTOMIZE THIS SECTION
+\section*{Activities \& Achievements}
+\begin{itemize}
+    \item List relevant activities, hobbies, or interests
+    \item Include any awards, recognition, or certifications
+\end{itemize}
+
+\end{document}
+```
